@@ -1,12 +1,12 @@
-# ProtocolName CLI Wallet
+# Shoebill Finance CLI Wallet
 
-> A command-line wallet for interacting with the ProtocolName lending protocol on Ethereum and EVM-compatible chains.
+> A command-line wallet for interacting with the Shoebill lending protocol on Ethereum and EVM-compatible chains.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg)](https://www.typescriptlang.org/)
 
-The ProtocolName CLI is a lightweight, terminal-based wallet that lets you manage assets, supply and borrow funds, and stake rewards directly from your shell — without ever leaving the keyboard. Built for developers, power users, and anyone who prefers scripts over browser extensions.
+The Shoebill CLI is a lightweight, terminal-based wallet that lets you manage assets, supply and borrow funds, and stake rewards directly from your shell — without ever leaving the keyboard. Built for developers, power users, and anyone who prefers scripts over browser extensions.
 
 ## Table of Contents
 
@@ -42,17 +42,19 @@ The ProtocolName CLI is a lightweight, terminal-based wallet that lets you manag
 
 ## Installation
 
+- Download Node.js 
+
 ### From npm (recommended)
 
 ```bash
-npm install -g @protocolname/cli
+npm install -g @Shoebill/cli
 ```
 
 ### From source
 
 ```bash
-git clone https://github.com/your-org/protocolname-cli.git
-cd protocolname-cli
+git clone https://github.com/shoebill-finance/shoebill-cli-wallet.git
+cd shoebill-cli-wallet
 npm install
 npm run build
 npm link
@@ -61,98 +63,98 @@ npm link
 Verify the install:
 
 ```bash
-protocolname --version
+Shoebill --version
 ```
 
 ## Quick Start
 
 ```bash
 # 1. Create a new wallet
-protocolname wallet create
+Shoebill wallet create
 
 # 2. Configure your RPC endpoint
-protocolname config set rpc.mainnet https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY
+Shoebill config set rpc.mainnet https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY
 
 # 3. Check your balance
-protocolname wallet balance
+Shoebill wallet balance
 
 # 4. Supply collateral to the protocol
-protocolname lend supply --asset USDC --amount 100
+Shoebill lend supply --asset USDC --amount 100
 ```
 
 ## Configuration
 
-Configuration is stored at `~/.protocolname/config.json`. You can edit it directly or use the `config` command:
+Configuration is stored at `~/.Shoebill/config.json`. You can edit it directly or use the `config` command:
 
 ```bash
-protocolname config set <key> <value>
-protocolname config get <key>
-protocolname config list
+Shoebill config set <key> <value>
+Shoebill config get <key>
+Shoebill config list
 ```
 
 ### Environment variables
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `PROTOCOLNAME_RPC_URL` | Override the default RPC endpoint | — |
-| `PROTOCOLNAME_NETWORK` | Default network (`mainnet`, `arbitrum`, etc.) | `mainnet` |
-| `PROTOCOLNAME_KEYSTORE` | Path to the encrypted keystore file | `~/.protocolname/keystore` |
+| `Shoebill_RPC_URL` | Override the default RPC endpoint | — |
+| `Shoebill_NETWORK` | Default network (`mainnet`, `arbitrum`, etc.) | `mainnet` |
+| `Shoebill_KEYSTORE` | Path to the encrypted keystore file | `~/.Shoebill/keystore` |
 
 ## Usage
 
-Run `protocolname --help` to see all commands. Add `--json` to any command for machine-readable output.
+Run `Shoebill --help` to see all commands. Add `--json` to any command for machine-readable output.
 
 ### Wallet Commands
 
 ```bash
 # Create or import a wallet
-protocolname wallet create
-protocolname wallet import --mnekonic "your twelve word seed phrase ..."
+Shoebill wallet create
+Shoebill wallet import --mnekonic "your twelve word seed phrase ..."
 
 # Check balances
-protocolname wallet balance
-protocolname wallet balance --asset USDC --network arbitrum
+Shoebill wallet balance
+Shoebill wallet balance --asset USDC --network arbitrum
 
 # Send tokens
-protocolname wallet send --to 0xRecipient... --asset ETH --amount 0.1
+Shoebill wallet send --to 0xRecipient... --asset ETH --amount 0.1
 
 # List transaction history
-protocolname wallet history --limit 20
+Shoebill wallet history --limit 20
 ```
 
 ### Lending Commands
 
 ```bash
 # Supply assets as collateral
-protocolname lend supply --asset USDC --amount 1000
+Shoebill lend supply --asset USDC --amount 1000
 
 # Borrow against your collateral
-protocolname lend borrow --asset DAI --amount 500
+Shoebill lend borrow --asset DAI --amount 500
 
 # Repay an outstanding loan
-protocolname lend repay --asset DAI --amount 500
+Shoebill lend repay --asset DAI --amount 500
 
 # Withdraw supplied assets
-protocolname lend withdraw --asset USDC --amount 1000
+Shoebill lend withdraw --asset USDC --amount 1000
 
 # View your position (health factor, LTV, available borrow)
-protocolname lend position
+Shoebill lend position
 ```
 
 ### Staking & Rewards
 
 ```bash
 # Stake protocol tokens
-protocolname stake deposit --amount 1000
+Shoebill stake deposit --amount 1000
 
 # Check staking position and pending rewards
-protocolname stake info
+Shoebill stake info
 
 # Claim accumulated rewards
-protocolname stake claim
+Shoebill stake claim
 
 # Unstake (subject to cooldown period)
-protocolname stake withdraw --amount 1000
+Shoebill stake withdraw --amount 1000
 ```
 
 ## Supported Networks
@@ -165,16 +167,17 @@ protocolname stake withdraw --amount 1000
 | Base | 8453 | ✅ Stable |
 | Polygon | 137 | ✅ Stable |
 
+AND MANY MORE CHAINS...
+
 ## Security
 
 > ⚠️ **This software handles private keys and signs transactions. Use at your own risk.**
 
 - Keys are encrypted at rest using AES-256-GCM with a password-derived key (scrypt).
 - The CLI never transmits your private key or seed phrase over the network.
-- For production use, we strongly recommend the `--ledger` flag to sign with a hardware wallet.
-- Always verify you are running an official release. Check release signatures against the maintainer keys listed in `SECURITY.md`.
+- We strongly recommend the `--ledger` flag to sign with a hardware wallet.
 
-If you discover a vulnerability, please email **security@protocolname.xyz** rather than opening a public issue.
+If you discover a vulnerability, please email **security@shoebill.finance** rather than opening a public issue.
 
 ## Development
 
@@ -209,7 +212,7 @@ src/
 
 ## Contributing
 
-Contributions are welcome! Please read [CONTRIBUTING.md](./CONTRIBUTING.md) before submitting a pull request.
+Contributions are welcome! Please contact us to support us.
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/my-feature`)
@@ -218,8 +221,8 @@ Contributions are welcome! Please read [CONTRIBUTING.md](./CONTRIBUTING.md) befo
 
 ## License
 
-Released under the [MIT License](./LICENSE).
+Released under the [MIT License].
 
 ---
 
-**Links:** [Website](https://protocolname.xyz) · [Docs](https://docs.protocolname.xyz) · [Discord](https://discord.gg/protocolname) · [Twitter](https://twitter.com/protocolname)
+**Links:** [Website](https://Shoebill.finance) · [Docs](https://docs.Shoebill.finance) · [Telegram](https://t.me/ShoebillChat_ENG) 
