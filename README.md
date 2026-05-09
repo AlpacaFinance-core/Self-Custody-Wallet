@@ -1,4 +1,4 @@
-# Shoebill Self Custody
+# Shoebill Self Custody Wallet
 
 > A self-custody wallet engineered for uncompromising security and lightning-fast trading.
 
@@ -141,12 +141,12 @@ Shoebill is non-custodial software. You are solely responsible for the security 
 
 ## Links
 
-- 🌐 Website: [leverfi.io](https://leverfi.io)
-- 📖 Docs: [docs.leverfi.io](https://docs.leverfi.io)
-- 🐦 Twitter: [@leverfi](https://twitter.com/leverfi)
-- 💬 Discord: [discord.gg/leverfi](https://discord.gg/leverfi)
-- 📧 Contact: hello@leverfi.io
+- 🌐 Website: [shoebill.finance](https://shoebill.finance)
+- 📖 Docs: [docs.shoebill.finance](https://docs.shoebill.finance)
+- 🐦 Twitter: [@shoebill_finance](https://twitter.com/shoebill_finance)
+- 💬 Discord: [discord.gg/shoebillfinance](https://discord.gg/shoebillfinance)
+- 📧 Contact: hello@shoebill.finance
 
 ---
 
-**Built by traders, for traders. Your keys. Your trades. Your edge.**
+**Built for the LendFi Market. Your Collateral. Your edge.**
