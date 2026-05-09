@@ -1,4 +1,4 @@
-# Lever Fi
+# Shoebill Self Custody
 
 > A self-custody wallet engineered for uncompromising security and lightning-fast trading.
 
@@ -10,14 +10,14 @@
 
 ## Overview
 
-Lever Fi is a non-custodial crypto wallet built for traders who demand both ironclad security and execution speed. Your keys never leave your device, and your trades never wait in line. Designed from the ground up for active on-chain traders, Lever Fi combines hardware-grade key management with a high-performance trading engine optimized for sub-second order routing.
+Shoebill Wallet is a non-custodial crypto wallet built for traders who demand both ironclad security and execution speed. Your keys never leave your device, and your trades never wait in line. Designed from the ground up for active on-chain traders, Shoebill combines hardware-grade key management with a high-performance trading engine optimized for sub-second order routing.
 
 **You own your keys. You own your trades. No middlemen, no custodians, no compromises.**
 
 ## Key Features
 
 ### 🔐 Security First
-- **True self-custody** — Private keys are generated and stored locally; Lever Fi servers never see them
+- **True self-custody** — Private keys are generated and stored locally; Shoebill servers never see them
 - **Hardware wallet support** — Native integration with Ledger, Trezor, and other major hardware devices
 - **Encrypted local storage** — AES-256 encryption with a user-defined passphrase
 - **Biometric unlock** — Face ID, Touch ID, and Android biometric authentication
@@ -68,15 +68,15 @@ npm start
 
 ## Quick Start
 
-1. **Install** Lever Fi on your platform of choice.
+1. **Install** Shoebill on your platform of choice.
 2. **Create a wallet** or import an existing one using a seed phrase or hardware device.
-3. **Back up your seed phrase** — write it down and store it offline. Lever Fi cannot recover it for you.
+3. **Back up your seed phrase** — write it down and store it offline. Shoebill cannot recover it for you.
 4. **Fund your wallet** by sending crypto to your address or bridging from another chain.
 5. **Start trading** — connect to any DApp or use the built-in swap interface.
 
 ## Architecture
 
-Lever Fi is built on a modular, security-focused architecture:
+Shoebill is built on a modular, security-focused architecture:
 
 \`\`\`
 ┌─────────────────────────────────────────────────┐
@@ -97,7 +97,7 @@ Lever Fi is built on a modular, security-focused architecture:
 
 ## Security
 
-Security is the foundation of Lever Fi, not an afterthought.
+Security is the foundation of Shoebill, not an afterthought.
 
 - **Audits** — Audited by [Firm A] and [Firm B]; reports available in `/audits`
 - **Bug bounty** — Up to $250,000 for critical vulnerabilities. See [SECURITY.md](./SECURITY.md)
@@ -133,11 +133,11 @@ npm run dev
 
 ## License
 
-Lever Fi is released under the [MIT License](./LICENSE).
+Shoebill is released under the [MIT License](./LICENSE).
 
 ## Disclaimer
 
-Lever Fi is non-custodial software. You are solely responsible for the security of your seed phrase and private keys. Lost keys cannot be recovered. Cryptocurrency trading involves substantial risk; never trade more than you can afford to lose. Lever Fi is provided "as is" without warranty of any kind.
+Shoebill is non-custodial software. You are solely responsible for the security of your seed phrase and private keys. Lost keys cannot be recovered. Cryptocurrency trading involves substantial risk; never trade more than you can afford to lose. Shoebill is provided "as is" without warranty of any kind.
 
 ## Links
 
