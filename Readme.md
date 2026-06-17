@@ -1,228 +1,173 @@
-# Convergence Finance CLI Wallet
+# Alpaca Finance Self Custody Wallet
 
-> A command-line wallet for interacting with the Convergence protocol on all EVM-compatible chains.
+> A self-custody wallet engineered for uncompromising security and lightning-fast trading.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Node.js](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg)](https://www.typescriptlang.org/)
-
-The Convergence CLI is a lightweight, terminal-based wallet that lets you manage assets, supply and borrow funds, and stake rewards directly from your shell — without ever leaving the keyboard. Built for developers, power users, and anyone who prefers scripts over browser extensions.
-
-## Table of Contents
-
-- [Features](#features)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Quick Start](#quick-start)
-- [Configuration](#configuration)
-- [Usage](#usage)
-  - [Wallet Commands](#wallet-commands)
-  - [Lending Commands](#lending-commands)
-  - [Staking & Rewards](#staking--rewards)
-- [Supported Networks](#supported-networks)
-- [Security](#security)
-- [Development](#development)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Features
-
-- 🔐 **Secure key management** — encrypted local keystore with optional hardware wallet support (Ledger)
-- 💸 **Wallet basics** — send, receive, and check balances for ETH and ERC-20 tokens
-- 🏦 **Lending operations** — supply collateral, borrow, repay, and withdraw across all supported markets
-- 📈 **Staking & rewards** — stake protocol tokens, claim rewards, and track APY in real time
-- ⛓️ **Multi-network** — Ethereum mainnet, Arbitrum, Optimism, Base, and Polygon out of the box
-- 🔧 **Scriptable** — JSON output mode for piping into other tools and automating workflows
-
-## Requirements
-
-- Node.js `>= 18.0.0`
-- npm `>= 9.0.0` (or pnpm / yarn)
-- An EVM-compatible RPC endpoint (Alchemy, Infura, or your own node)
-
-## Installation
-
-- Download Node.js 
-
-### From npm (recommended)
-
-```bash
-npm install -g @Convergence/cli
-```
-
-### From source
-
-```bash
-git clone https://github.com/Convergence-finance/Convergence-cli-wallet.git
-cd Convergence-cli-wallet
-npm install
-npm run build
-npm link
-```
-
-Verify the install:
-
-```bash
-Convergence --version
-```
-
-## Quick Start
-
-```bash
-# 1. Create a new wallet
-Convergence wallet create
-
-# 2. Configure your RPC endpoint
-Convergence config set rpc.mainnet https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY
-
-# 3. Check your balance
-Convergence wallet balance
-
-# 4. Supply collateral to the protocol
-Convergence lend supply --asset USDC --amount 100
-```
-
-## Configuration
-
-Configuration is stored at `~/.Convergence/config.json`. You can edit it directly or use the `config` command:
-
-```bash
-Convergence config set <key> <value>
-Convergence config get <key>
-Convergence config list
-```
-
-### Environment variables
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `Convergence_RPC_URL` | Override the default RPC endpoint | — |
-| `Convergence_NETWORK` | Default network (`mainnet`, `arbitrum`, etc.) | `mainnet` |
-| `Convergence_KEYSTORE` | Path to the encrypted keystore file | `~/.Convergence/keystore` |
-
-## Usage
-
-Run `Convergence --help` to see all commands. Add `--json` to any command for machine-readable output.
-
-### Wallet Commands
-
-```bash
-# Create or import a wallet
-Convergence wallet create
-Convergence wallet import --mnekonic "your twelve word seed phrase ..."
-
-# Check balances
-Convergence wallet balance
-Convergence wallet balance --asset USDC --network arbitrum
-
-# Send tokens
-Convergence wallet send --to 0xRecipient... --asset ETH --amount 0.1
-
-# List transaction history
-Convergence wallet history --limit 20
-```
-
-### Lending Commands
-
-```bash
-# Supply assets as collateral
-Convergence lend supply --asset USDC --amount 1000
-
-# Borrow against your collateral
-Convergence lend borrow --asset DAI --amount 500
-
-# Repay an outstanding loan
-Convergence lend repay --asset DAI --amount 500
-
-# Withdraw supplied assets
-Convergence lend withdraw --asset USDC --amount 1000
-
-# View your position (health factor, LTV, available borrow)
-Convergence lend position
-```
-
-### Staking & Rewards
-
-```bash
-# Stake protocol tokens
-Convergence stake deposit --amount 1000
-
-# Check staking position and pending rewards
-Convergence stake info
-
-# Claim accumulated rewards
-Convergence stake claim
-
-# Unstake (subject to cooldown period)
-Convergence stake withdraw --amount 1000
-```
-
-## Supported Networks
-
-| Network | Chain ID | Status |
-|---------|----------|--------|
-| Ethereum Mainnet | 1 | ✅ Stable |
-| Arbitrum One | 42161 | ✅ Stable |
-| Optimism | 10 | ✅ Stable |
-| Base | 8453 | ✅ Stable |
-| Polygon | 137 | ✅ Stable |
-
-AND MANY MORE CHAINS...
-
-## Security
-
-> ⚠️ **This software handles private keys and signs transactions. Use at your own risk.**
-
-- Keys are encrypted at rest using AES-256-GCM with a password-derived key (scrypt).
-- The CLI never transmits your private key or seed phrase over the network.
-- We strongly recommend the `--ledger` flag to sign with a hardware wallet.
-
-If you discover a vulnerability, please email **security@Convergence.finance** rather than opening a public issue.
-
-## Development
-
-```bash
-# Install dependencies
-npm install
-
-# Run in dev mode with hot reload
-npm run dev
-
-# Run tests
-npm test
-
-# Lint and type-check
-npm run lint
-npm run typecheck
-
-# Build for production
-npm run build
-```
-
-### Project structure
-
-```
-src/
-├── commands/      # CLI command handlers
-├── core/          # Wallet, signer, and keystore logic
-├── protocol/      # Lending and staking contract bindings
-├── network/       # RPC client and chain configs
-└── utils/         # Shared helpers
-```
-
-## Contributing
-
-Contributions are welcome! Please contact us to support us.
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/my-feature`)
-3. Commit your changes with conventional commit messages
-4. Push to your fork and open a PR
-
-## License
-
-Released under the [MIT License].
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
+[![Version](https://img.shields.io/badge/version-2.17.4-blue.svg)]()
 
 ---
 
-**Links:** [Website](https://app.cvg.finance) · [Docs](https://docs.cvg.finance) · [Discord](https://discord.com/invite/convergencefinance) 
+## Overview
+
+Alpaca Finance Wallet is a non-custodial crypto wallet built for traders who demand both ironclad security and execution speed. Your keys never leave your device, and your trades never wait in line. Designed from the ground up for active on-chain traders, Alpaca Finance combines hardware-grade key management with a high-performance trading engine optimized for sub-second order routing.
+
+**You own your keys. You own your trades. No middlemen, no custodians, no compromises.**
+
+---
+
+## Key Features
+
+### 🔐 Security First
+- **True self-custody** — Private keys are generated and stored locally; Alpaca Finance servers never see them
+- **Hardware wallet support** — Native integration with Ledger, Trezor, and other major hardware devices
+- **Encrypted local storage** — AES-256 encryption with a user-defined passphrase
+- **Biometric unlock** — Face ID, Touch ID, and Android biometric authentication
+- **Open-source and auditable** — Every line of code is publicly verifiable
+- **Phishing protection** — Built-in domain verification and transaction simulation
+
+### ⚡ Lightning-Fast Trading
+- **Sub-second order routing** across major DEXs and aggregators
+- **MEV protection** through private transaction relays
+- **One-click swaps** with optimized gas estimation
+- **Smart order routing** that splits trades across pools for the best execution
+- **Real-time price feeds** via low-latency WebSocket connections
+- **Pre-signed transaction templates** for repeated trade patterns
+
+### 🌐 Multi-Chain Support
+- Ethereum and all major EVM chains (Arbitrum, Optimism, Base, Polygon, BNB Chain, Avalanche)
+- Solana
+- Bitcoin
+- Cross-chain bridging through audited protocols
+
+### 📊 Trader Tools
+- Advanced charting with technical indicators
+- Portfolio tracking and P&L analytics
+- Limit orders and DCA strategies
+- Token approval manager
+- Transaction history with tax-export support
+
+---
+
+## Installation
+
+### Desktop (macOS, Windows, Linux)
+
+Download the latest release from [alpacafinance.io/download](https://alpacafinance.io/download), or build from source:
+
+```bash
+git clone https://github.com/alpacafinance/alpaca-wallet.git
+cd alpaca-wallet
+npm install
+npm run build
+npm start
+```
+
+### Mobile
+- [iOS App Store](https://apps.apple.com/app/alpaca-finance)
+- [Google Play](https://play.google.com/store/apps/details?id=io.alpacafinance)
+
+### Browser Extension
+- [Chrome Web Store](https://chrome.google.com/webstore)
+- [Firefox Add-ons](https://addons.mozilla.org)
+
+---
+
+## Quick Start
+
+1. **Install** Alpaca Finance on your platform of choice.
+2. **Create a wallet** or import an existing one using a seed phrase or hardware device.
+3. **Back up your seed phrase** — write it down and store it offline. Alpaca Finance cannot recover it for you.
+4. **Fund your wallet** by sending crypto to your address or bridging from another chain.
+5. **Start trading** — connect to any dApp or use the built-in swap interface.
+
+---
+
+## Architecture
+
+Alpaca Finance is built on a modular, security-focused architecture:
+
+```
+┌─────────────────────────────────────────────────┐
+│              User Interface (React)             │
+├─────────────────────────────────────────────────┤
+│           Trading Engine (Rust core)            │
+├──────────────────────┬──────────────────────────┤
+│   Key Vault (WASM)   │   Routing & Quote API    │
+├──────────────────────┴──────────────────────────┤
+│         Chain Adapters (EVM, SVM, BTC)          │
+└─────────────────────────────────────────────────┘
+```
+
+- **UI layer** — React + TypeScript for desktop, mobile, and extension clients
+- **Core engine** — A Rust trading engine compiled to native binaries and WebAssembly
+- **Key vault** — Isolated cryptographic module with zero network access
+- **Chain adapters** — Pluggable modules for each supported blockchain
+
+---
+
+## Security
+
+Security is the foundation of Alpaca Finance, not an afterthought.
+
+- **Audits** — Audited by leading security firms; full reports available in [`/audits`](./audits)
+- **Bug bounty** — Up to $250,000 for critical vulnerabilities. See [SECURITY.md](./SECURITY.md)
+- **Reproducible builds** — Verify that the binary you run matches the public source code
+- **No telemetry by default** — Opt-in only, never tied to wallet addresses
+
+If you discover a security vulnerability, please email **security@alpacafinance.io** rather than opening a public issue.
+
+---
+
+## Contributing
+
+Contributions are welcome. Please read [CONTRIBUTING.md](./CONTRIBUTING.md) before submitting a pull request. For major changes, open an issue first to discuss what you'd like to change.
+
+```bash
+# Run tests
+npm test
+
+# Run the linter
+npm run lint
+
+# Run the development build
+npm run dev
+```
+
+---
+
+## Roadmap
+
+- [x] EVM chain support
+- [x] Hardware wallet integration
+- [x] MEV-protected swaps
+- [ ] Solana perpetuals
+- [ ] Built-in fiat on/off ramps
+- [ ] Social recovery via guardians
+- [ ] Mobile hardware wallet pairing over BLE
+
+---
+
+## License
+
+Alpaca Finance is released under the [MIT License](./LICENSE).
+
+---
+
+## Disclaimer
+
+Alpaca Finance is non-custodial software. You are solely responsible for the security of your seed phrase and private keys. Lost keys cannot be recovered. Cryptocurrency trading involves substantial risk; never trade more than you can afford to lose. Alpaca Finance is provided "as is" without warranty of any kind.
+
+---
+
+## Links
+
+- 🌐 Website: [alpacafinance.io](https://alpacafinance.io)
+- 📖 Docs: [docs.alpacafinance.io](https://docs.alpacafinance.io)
+- 🐦 Twitter: [@AlpacaFinance](https://twitter.com/AlpacaFinance)
+- 💬 Discord: [discord.gg/alpacafinance](https://discord.gg/alpacafinance)
+- 📧 Contact: hello@alpacafinance.io
+
+---
+
+**Built so you never want to sell.**
